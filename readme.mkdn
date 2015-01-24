@@ -1,0 +1,21 @@
+# Numcross File Creation Utility
+
+## About
+
+Creates multiple file formats for distributing numcross puzzles as done on [The Griddle](http://thegriddle.net).
+
+### SVG/PDF
+
+Uses an SVG template to create a file like the PDFs customarily distributed on The Griddle.
+
+### IPUZ
+
+Creates a JSON-formatted file using the [IPUZ standard](http://ipuz.org), compatible with software like Puzzazz.
+
+### PUZ
+
+Creates the text format of a version 2 PUZ file, which can be used with Across Lite among others.
+
+## Credit
+
+Created by David Millar in 2015. Patches and pull requests welcome.
