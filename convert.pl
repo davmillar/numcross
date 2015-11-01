@@ -1,12 +1,19 @@
 #!/usr/bin/perl
+
 use strict;
 use warnings;
+
 use Data::Dumper;
+use JSON;
 
 my $filename = 'src/example.num';
 my $mode = 0;
 
 my @puzzlegrid = ();
+my %puzzledimensions = (
+  "width" => 11,
+  "height" => 11
+);
 
 my %numberclues;
 $numberclues{"across"} = ();
@@ -15,6 +22,20 @@ $numberclues{"down"} = ();
 my %letterclues;
 $letterclues{"across"} = ();
 $letterclues{"down"} = ();
+
+
+my %ipuz_data = (
+  "version" => "http://ipuz.org/v1",
+  "kind" => ["http://ipuz.org/crossword#1"],
+  "copyright" => "David Millar",
+  "author" => "David Millar",
+  "publisher" => "The Griddle",
+  "title" => "Numcross",
+  "intro" => "Solve the puzzle using the clues provided.",
+  "empty" => "0",
+  "charset" => "0123456789",
+  "dimensions" => %puzzledimensions,
+);
 
 open(my $fh, '<:encoding(UTF-8)', $filename)
   or die "Could not open file '$filename' $!";
@@ -41,6 +62,9 @@ while (my $row = <$fh>) {
 print Dumper(@puzzlegrid);
 print Dumper(%letterclues);
 print Dumper(%numberclues);
+
+my $ipuz_json = encode_json \%ipuz_data;
+print $ipuz_json;
 
 sub parseClue {
   my $cluetext = $_[0];
